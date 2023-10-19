@@ -11,76 +11,90 @@ function decryptText() {
 }
 
 function transposeEncrypt(text) {
-    // Define el número de columnas
     const rows = document.getElementById("rows").value;
     const columns = document.getElementById("columns").value;
-    /*const columns = 3;
-    const rows = Math.ceil(text.length / columns);*/
+
     let matrix = new Array(rows);
-
-    // Inicializa la matriz
-    for (let i = 0; i < rows; i++) {
-        matrix[i] = new Array(columns);
-    }
-
-    // Llena la matriz con el texto
-    let k = 0;
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < columns; j++) {
-            if (k < text.length) {
-                matrix[i][j] = text[k++];
-            }
-        }
-    }
-
-    // Construye el texto cifrado
     let result = '';
-    for (let j = 0; j < columns; j++) {
+
+    if (text.length <= columns * rows) {
+
+        // Inicializa la matriz
         for (let i = 0; i < rows; i++) {
-            if (matrix[i][j]) {
-                result += matrix[i][j];
+            matrix[i] = new Array(columns);
+        }
+
+        // Llena la matriz con el texto
+        let k = 0;
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < columns; j++) {
+                if (k < text.length) {
+                    matrix[i][j] = text[k++];
+                } else {
+                    matrix[i][j] = "-";
+                }
             }
         }
+
+        // Construye el texto cifrado
+        for (let j = 0; j < columns; j++) {
+            for (let i = 0; i < rows; i++) {
+                if (matrix[i][j]) {
+                    result += matrix[i][j];
+                }
+            }
+        }
+    } else {
+        alert("La longitud del texto es mayor que la de la matriz.");
+        result = '';
     }
 
+    document.getElementById("longText").value = text.length;
+    document.getElementById("longMatriz").value = rows * columns;
     return result;
 }
 
 function transposeDecrypt(text) {
-    // Define el número de columnas
-    const columns = 3;
-    const rows = Math.ceil(text.length / columns);
-    /*const rows = document.getElementById("rows").value;
-    const columns = document.getElementById("columns").value;*/
+    const columns = document.getElementById("rows").value;
+    const rows = document.getElementById("columns").value;
+    
     let matrix = new Array(rows);
+    let result = '';
 
-    // Inicializa la matriz
-    for (let i = 0; i < rows; i++) {
-        matrix[i] = new Array(columns);
-    }
+    if (text.length <= columns * rows) {
 
-    // Calcula la cantidad de celdas vacías
-    const emptyCells = rows * columns - text.length;
-
-    // Llena la matriz con el texto
-    let k = 0;
-    for (let j = 0; j < columns; j++) {
+        // Inicializa la matriz
         for (let i = 0; i < rows; i++) {
-            if (i >= rows - emptyCells) {
-                matrix[i][j] = '';
-            } else {
-                matrix[i][j] = text[k++];
+            matrix[i] = new Array(columns);
+        }
+
+        // Llena la matriz con el texto
+        let k = 0;
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < columns; j++) {
+                if (k < text.length) {
+                    matrix[i][j] = text[k++];
+                } else {
+                    matrix[i][j] = "-";
+                }
             }
         }
-    }
 
-    // Construye el texto descifrado
-    let result = '';
-    for (let i = 0; i < rows; i++) {
+        // Construye el texto cifrado
+        result = '';
         for (let j = 0; j < columns; j++) {
-            result += matrix[i][j];
+            for (let i = 0; i < rows; i++) {
+                if (matrix[i][j]) {
+                    result += matrix[i][j];
+                }
+            }
         }
+    } else {
+        alert("La longitud del texto es mayor que la de la matriz.");
+        result = '';
     }
 
+    document.getElementById("longText").value = text.length;
+    document.getElementById("longMatriz").value = rows * columns;
     return result;
 }

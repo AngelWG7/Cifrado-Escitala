@@ -20,8 +20,13 @@
         <button onclick="encryptText()" class="button encrypt-button">Cifrar</button>
         <button onclick="decryptText()" class="button decrypt-button">Descifrar</button>
         <br>
+        <label for="text" class="label">Long. Texto:</label>
+        <input id="longText" class="input2" type="number" readonly/>
+        <label for="text" class="label">Long. Matriz:</label>
+        <input id="longMatriz" class="input3" type="number" readonly/>
+        <br>
         <label for="result" class="label">Resultado:</label>
-        <input id="result" class="input" type="text" />
+        <input id="result" class="input" type="text" readonly/>
     </div>
     <script src="cifrado.js"></script>
 </body>
