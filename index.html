@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cifrado y Descifrado Escítala</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="card">
+        <h2 class="title">Cifrado y Descifrado Escítala</h2>
+        <label for="text" class="label">Texto:</label>
+        <input id="text" class="input" type="text" />
+        <br>
+        <label for="text" class="label">No. Filas:</label>
+        <input id="rows" class="input2" type="number" />
+        <label for="text" class="label">No. Columnas:</label>
+        <input id="columns" class="input3" type="number" />
+        <br>
+        <button onclick="encryptText()" class="button encrypt-button">Cifrar</button>
+        <button onclick="decryptText()" class="button decrypt-button">Descifrar</button>
+        <br>
+        <label for="result" class="label">Resultado:</label>
+        <input id="result" class="input" type="text" />
+    </div>
+    <script src="cifrado.js"></script>
+</body>
+</html>
